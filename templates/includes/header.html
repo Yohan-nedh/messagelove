@@ -8,6 +8,8 @@
     <nav class="block relative">
         <ul class="navitems flex items-center justify-center h-full">
             {% if request.user.is_authenticated %}
+            <li><a href="/">Home</a></li>
+            <li><a href="{% url 'inbox' %}"> Inbox</a></li>
             <li x-data="{ dropdownChatOpen: false }" class="relative">
                 <a @click="dropdownChatOpen = !dropdownChatOpen" @click.away="dropdownChatOpen = false" class="cursor-pointer select-none">
                     <div id="online-in-chats"></div> 
@@ -29,16 +31,7 @@
                                 {% endfor %}
                             {% endif %}
                         {% endfor %}                   
-                    </ul>
-                    <li class="relative">
-                        <div class="absolute top-1.5 right-1" 
-                             hx-get="/inbox/notify-inbox/"
-                             hx-trigger="load"
-                             hx-target="this"
-                             hx-swap="innerHTML">
-                        </div>
-                        <a href="/inbox/">Inbox</a>
-                    </li>                    
+                    </ul>                  
             <li x-data="{ dropdownOpen: false }" class="relative">
                 <a @click="dropdownOpen = !dropdownOpen" @click.away="dropdownOpen = false" class="cursor-pointer select-none">
                     <img class="h-8 w-8 rounded-full object-cover" src="{{ user.profile.avatar }}"/>
